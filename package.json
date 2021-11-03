@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-generator-redo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drad9428/team-profile-generator-redo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drad9428/team-profile-generator-redo/issues"
+  },
+  "homepage": "https://github.com/drad9428/team-profile-generator-redo#readme"
+}
