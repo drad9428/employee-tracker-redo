@@ -1,21 +1,10 @@
-// ======================================================================
-// REQUIRED NPMS
-// ======================================================================
 const inquirer = require("inquirer");
 const table = require('console.table');
 const q = require("./src/inquirer");
 
-// ======================================================================
-// MENU LOGIC RESOURCES
-// ======================================================================
 const ml = require("./logic/menuLogic");
 const { teamManager } = require("./src/tableNames");
 const { getEmps } = require("./utils/employees")
-
-
-// ======================================================================
-// LOGIC FOR MAIN MENU SELECTIONS
-// ======================================================================
 
 const menuLogic = ({ mainMenu }) => {
     switch(mainMenu){
@@ -50,7 +39,7 @@ const menuLogic = ({ mainMenu }) => {
                 startApp();
             });
             break;
-        case "Update Employee Role":
+        case "Update Employee":
             ml.updateEmployee().then(data => {startApp()}).catch(err => {
                 console.log("\nAn Error Occurred: ", err.error + "\n");
                 startApp();
@@ -62,9 +51,6 @@ const menuLogic = ({ mainMenu }) => {
     }
 }
 
-// ======================================================================
-// START APPLICATION
-// ======================================================================
 const startApp = () => {
     inquirer.prompt (q.mainMenu)
     .then(answers => {
@@ -72,9 +58,6 @@ const startApp = () => {
     })
 }
 
-// ======================================================================
-// TERMINATE APPLICATION
-// ======================================================================
 const quitApp = () => {
     console.log("Goodbye!");
     process.exit();

@@ -22,16 +22,11 @@ const getEmps = () => {
     })
 }
 
-// ======================================================================
-// GET ORGANIZED EMPLOYEE LIST
-// ======================================================================
-// Ordered list of Employees, user has the ability to order ASC||DESC for id, first_name, last_name, role_id, manager_id
 const getEmpsOrdered = order => {
     return new Promise (function(resolve, reject) {
         let colLiteral = ""
         let orderBy = order.orderType
     
-        // Assign appropriate column name to colLiteral
         switch (order.selectCol) {
             case "ID":
                 colLiteral = "e.id"
@@ -56,7 +51,6 @@ const getEmpsOrdered = order => {
                 break;
         }
     
-        // Determine order type ASC||DESC
         switch (order.orderType) {
             case "Ascending":
                 orderBy = "ASC"
@@ -83,9 +77,7 @@ const getEmpsOrdered = order => {
         })
     })
 }
-// ======================================================================
-// ADD NEW EMPLOYEE
-// ======================================================================
+
 const addEmp = newEmp => {
     return new Promise (function(resolve, reject) {
         const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) 
@@ -104,9 +96,6 @@ const addEmp = newEmp => {
     })
 }
 
-// ======================================================================
-// GET EMP ID BY FIRST AND LAST NAME
-// ======================================================================
 const getEmpId = data => {
     return new Promise (function(resolve, reject) {
         const sql = `SELECT id FROM employee WHERE first_name = ? AND last_name = ?;`
@@ -125,20 +114,11 @@ const getEmpId = data => {
         })
     })
 }
-// ======================================================================
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~ UPDATE EMPLOYEE ~~~~~~~~~~~~~~~~~~~~~~~~~~
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// ======================================================================
 
-// ======================================================================
-// UPDATE EMPLOYEE NAME
-// ======================================================================
 const updateEmpName = data => {
     return new Promise (function(resolve, reject) {
         const sql = `UPDATE employee SET first_name = ?, last_name = ? WHERE id = ?;`
         params = [data.updateFirstName, data.updateLastName, data.empId]
-        // console.log(data)
         db.query(sql, params, (err, result) => {
             if (err) {
                 reject({ error: err.message});
@@ -153,15 +133,11 @@ const updateEmpName = data => {
         })
     })
 }
-// ======================================================================
-// UPDATE EMPLOYEE ROLE
-// ======================================================================
+
 const updateEmpRole = data => {
     return new Promise (function(resolve, reject) {
-        // console.log(data)
         const sql = `UPDATE employee SET role_id = ? WHERE id = ?;`
         params = [data.roleId, data.empId]
-        // console.log(data)
         db.query(sql, params, (err, result) => {
             if (err) {
                 reject({ error: err});
@@ -176,9 +152,7 @@ const updateEmpRole = data => {
         })
     })
 }
-// ======================================================================
-// UPDATE EMPLOYEE MANAGER
-// ======================================================================
+
 const updateEmpManager = data => {
     return new Promise (function(resolve, reject) {
         const sql = `UPDATE employee SET manager_id = ? WHERE id = ?;`

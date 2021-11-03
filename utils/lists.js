@@ -26,7 +26,6 @@ function empList() {
                 let convertedRow = results[i].name
                 resultsArr.push(convertedRow)
             }
-            // console.log(resultsArr)
             resolve(resultsArr)
         });
     })
@@ -47,7 +46,6 @@ function roleList() {
                 let convertedRow = results[i].role
                 resultsArr.push(convertedRow)
             }
-            // console.log(resultsArr)
             resolve(resultsArr)
         });
     });
@@ -61,13 +59,11 @@ function deptList() {
                 console.log({ error: err.message })
                 return reject(err);
             }
-            // console.log(results)
             let resultsArr = []
             for (let i = 0; i < results.length; i++) {
                 let convertedRow = results[i].department
                 resultsArr.push(convertedRow)
             }
-            // console.log(resultsArr)
             resolve(resultsArr)
         });
     });

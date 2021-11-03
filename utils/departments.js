@@ -1,12 +1,6 @@
-// ======================================================================
-// REQUIRED NPMS
-// ======================================================================
 const db = require("../db/connection");
 const table = require('console.table');
 
-// ======================================================================
-// GET DEPARTMENTS
-// ======================================================================
 const getDept = () => {
     return new Promise (function(resolve, reject) {
         const sql = `SELECT id AS "ID", dept_name AS Department FROM department ORDER BY id;`
@@ -20,9 +14,6 @@ const getDept = () => {
     })
 }
 
-// ======================================================================
-// ADD NEW DEPARTMENT
-// ======================================================================
 const addDept = newDept => {
     return new Promise (function(resolve, reject) {
         const sql = `INSERT INTO department (dept_name) 
@@ -42,9 +33,6 @@ const addDept = newDept => {
     })
 }
 
-// ======================================================================
-// GET DEPARTMENT ID BY DEPT NAME
-// ======================================================================
 const getDeptId = data => {
     return new Promise (function(resolve, reject) {
         const sql = `SELECT id FROM department WHERE dept_name = ?;`
