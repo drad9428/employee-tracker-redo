@@ -1,12 +1,16 @@
-const inquirer = require('inquirer')
-const table = require(console.table)
-const q = require('../src/questions')
-const r = require('../utils/roles')
-const d = require('../utils/departments')
-const e = require('../employee')
-const {inqList} = require('../utils/lists')
-const {empTable, roleTable, deptTable} = require('../src/tableNames')
+const inquirer = require("inquirer");
+const table = require('console.table');
+const q = require("../src/inquirer");
+const r = require("../utils/roles");
+const d = require("../utils/departments");
+const e = require("../utils/employees")
+const { inqList } = require("../utils/lists");
+const { empTable, roleTable, deptTable } = require("../src/tableNames");
 
+
+// ======================================================================
+// LOGIC FOR DISPLAYING DIFFERENT TABLES
+// ======================================================================
 function showEmployees() {
     return new Promise (function(resolve, reject) {
         inquirer.prompt(q.empOrderBy).then(order => e.getEmpsOrdered(order)).then(results => {
@@ -34,6 +38,9 @@ function showRoles() {
     })
 }
 
+// ======================================================================
+// LOGIC FOR ADDING NEW EMPS, ROLES, DEPARTMENTS
+// ======================================================================
 function newEmployee() {
     return new Promise (function(resolve, reject) {
         inqList().then((resultsArr) => {
@@ -50,6 +57,7 @@ function newEmployee() {
             return r.getRoleId(data) 
         })
         .then(data => {
+            // console.log(data)
             if (data.empManager === "No Manager") {
                 data.empManager = null;
                 return e.addEmp(data)
@@ -86,6 +94,7 @@ function newDepartment() {
             return d.addDept(newDept)
         })
         .then(data => {
+            // console.log(data)
             resolve(console.log("\n" + data.data + " has been added as a department!"+ "\n"));
         })
         .catch(err => {
@@ -97,6 +106,7 @@ function newDepartment() {
 function newRole() {
     return new Promise (function(resolve, reject) {
         inqList().then((resultsArr) => {
+            // console.log(resultsArr)
             q.addRole[2].choices = resultsArr[2];
 
             return q.addRole
@@ -119,6 +129,9 @@ function newRole() {
     });   
 }
 
+// ======================================================================
+// LOGIC FOR UPDATING EMPS
+// ======================================================================
 function updateEmployee() {
     return new Promise (function(resolve, reject) {
         inqList().then((resultsArr) => {
@@ -177,5 +190,9 @@ function updateEmployee() {
         })
     });   
 }
+// function temp() {
+//     return new Promise (function(resolve, reject) {
+//     });   
+// }
 
 module.exports = { showEmployees, showDepartments, showRoles, newEmployee, newDepartment, newRole, updateEmployee }
